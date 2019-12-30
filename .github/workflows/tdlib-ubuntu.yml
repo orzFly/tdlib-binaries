@@ -13,6 +13,7 @@ jobs:
         apt-get install gperf cmake build-essential libssl-dev zlib1g-dev
 
     - name: download code
+      run: |
         git clone https://github.com/tdlib/td.git
         cd td && git submodule update --init --recursive
 
