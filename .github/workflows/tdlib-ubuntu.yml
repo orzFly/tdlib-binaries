@@ -1,4 +1,4 @@
-name: TDLib Ubuntu
+name: TDLib Linux
 
 on: [push]
 
@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: install dependency
       run: |
-        apt-get install gperf cmake build-essential libssl-dev zlib1g-dev
+        sudo apt-get install gperf cmake build-essential libssl-dev zlib1g-dev
 
     - name: download code
       run: |
