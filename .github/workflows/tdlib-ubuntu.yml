@@ -4,21 +4,39 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: install dependency
+    - name: Install dependency
       run: |
-        sudo apt-get install gperf cmake build-essential libssl-dev zlib1g-dev
+        sudo apt-get install gperf cmake build-essential libssl-dev zlib1g-dev file libc-bin
 
-    - name: download code
+    - name: Download TDLib sources
       run: |
         git clone https://github.com/tdlib/td.git
         (cd td; git submodule update --init --recursive)
 
-    - name: cmake
+    - name: Build TDLib
       run: |
         mkdir td/build
         (cd td/build; cmake -DCMAKE_BUILD_TYPE=Release ..)
         (cd td/build; cmake --build .)
+
+    - name: Check file
+      run: |
+        uname -a
+        ldd td/build/libtdjson.so
+        file td/build/libtdjson.so
+
+    - name: Pack results
+      run: |
+        mkdir result
+        cp td/build/libtdjson.so result/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: libtdjson-linux-amd64
+        # Directory containing files to upload
+        path: result
