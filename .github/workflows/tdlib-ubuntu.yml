@@ -15,10 +15,10 @@ jobs:
     - name: download code
       run: |
         git clone https://github.com/tdlib/td.git
-        cd td && git submodule update --init --recursive
+        (cd td; git submodule update --init --recursive)
 
     - name: cmake
       run: |
         mkdir td/build
-        cd td/build && cmake -DCMAKE_BUILD_TYPE=Release ..
-        cd td/build && cmake --build .
+        (cd td/build; cmake -DCMAKE_BUILD_TYPE=Release ..)
+        (cd td/build; cmake --build .)
