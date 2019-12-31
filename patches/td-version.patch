@@ -1,0 +1,11 @@
+--- a/td/telegram/Td.cpp      2019-12-31 15:26:33.119153800 +0800
++++ b/td/telegram/Td.cpp      2019-12-31 15:26:46.996219300 +0800
+@@ -4849,7 +4849,7 @@
+   if (options_.application_version.empty()) {
+     return Status::Error(400, "Application version must be non-empty");
+   }
+-  if (options_.api_id != 21724) {
++  if (0) {
+     options_.application_version += ", TDLib ";
+     options_.application_version += TDLIB_VERSION;
+   }
