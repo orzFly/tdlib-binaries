@@ -23,7 +23,7 @@ jobs:
 
     - name: Patch sources
       run: |
-        (cd td; patch -p1 ../builder/patches/td-version.patch)
+        (cd td; patch -p1 < ../builder/patches/td-version.patch)
 
     - name: Build TDLib
       run: |
